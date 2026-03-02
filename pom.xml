@@ -272,6 +272,17 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.4.0</version>
             </plugin>
+            <!-- Checkstyle Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <configLocation>${project.basedir}/checkstyle.xml</configLocation>
+                    <consoleOutput>true</consoleOutput>
+                    <failOnViolation>true</failOnViolation>
+                </configuration>
+            </plugin>
             <!-- JaCoCo Plugin -->
 <!--            <plugin>-->
 <!--                <groupId>org.jacoco</groupId>-->
