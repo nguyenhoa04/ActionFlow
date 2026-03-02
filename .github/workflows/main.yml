@@ -5,6 +5,11 @@ on:
     
     pull_request:
         branches: [ "main", "feature" ]
+    
+    workflow_dispatch:
+    
+    schedule:
+        - cron: '10 13 * * 1-5' # Runs every day at midnight
 
 jobs:
     build:
