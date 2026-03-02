@@ -1,0 +1,22 @@
+name: Build Job
+on:
+    push:
+        branches: [ main ]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Code checkout
+              uses: actions/checkout@v4
+
+            - name: Maven Build
+              run: mvn install
+    
+
+    Testing:
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: Code checkout
+              uses: actions/checkout@v4
