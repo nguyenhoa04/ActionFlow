@@ -55,4 +55,30 @@ jobs:
             - name: Run tests on feature branch
               if: github.ref == 'refs/heads/feature'
               run: echo "Skipping unit tests and code analysis"
- 
+    
+    Security-Scan:
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: Code checkout
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+            - name: Run Trivy Security Scan
+              uses: aquasecurity/trivy-action@master
+              with:
+                scan-type: 'fs'
+                scan-ref: '.'
+                format: json
+                exit-code: '0'
+                vuln-type: 'os,library'
+                output: 'trivy-report.json'
+            
+            - name: Upload Trivy scan results as artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: trivy-scan-results
+                path: trivy-results.json
+              
+
+
